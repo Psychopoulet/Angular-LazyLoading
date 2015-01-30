@@ -3,7 +3,9 @@
 	'use strict';
 	
 	angular.module('ngLazyLoading', [])
-		.service('$lazyloading', ['$document', '$q', '$timeout', function ($document, $q, $timeout)
+		.service('$lazyloading',
+			['$document', '$q', '$timeout',
+			function ($document, $q, $timeout)
 		{
 			/* attributes */
 				

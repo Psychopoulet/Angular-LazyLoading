@@ -4,12 +4,12 @@
 	
 	angular.module('ngLazyLoading', [])
 		.service('$lazyloading',
-			['$document', '$q', '$timeout',
-			function ($document, $q, $timeout)
+			['$document', '$q', '$timeout', '$log',
+			function ($document, $q, $timeout, $log)
 		{
 			/* attributes */
 				
-				var m_tabCachedScriptsLoaded = new Array(); // list of loaded scripts
+				var m_tabCachedScriptsLoaded = []; // list of loaded scripts
 				var b_FBScriptInitialized = false; // is FB connect script loaded and initialized ?
 				
 			/* methodes */
@@ -24,13 +24,13 @@
 							clScript = $document[0].createElement('script');
 							
 							clScript.onload = clScript.onreadystatechange = function () { $timeout(function () { clDefer.resolve(); }); };
-							clScript.onerror = function (p_sMessage) { $timeout(function () { clDefer.reject(p_sMessage); }); };
+							clScript.onerror = function (e) { $log.error(e); clDefer.reject('Impossible to load ' + p_sUrl); };
 							
 							clScript.src = p_sUrl;
 							
 							$document[0].body.appendChild(clScript);
 						}
-						catch (e) { clDefer.reject(e); }
+						catch (e) { $log.error(e); clDefer.reject(e); }
 						
 					return clDefer.promise;
 				};
@@ -60,10 +60,10 @@
 						
 						try
 						{
-							p_sLanguageISO = (!angular.isDefined(p_sLanguageISO) || '' == p_sLanguageISO) ? 'en_US' : p_sLanguageISO;
-							p_sVersion = (!angular.isDefined(p_sVersion) || '' == p_sVersion) ? 'v2.2' : p_sVersion;
+							p_sLanguageISO = (!angular.isDefined(p_sLanguageISO) || '' === p_sLanguageISO) ? 'en_US' : p_sLanguageISO;
+							p_sVersion = (!angular.isDefined(p_sVersion) || '' === p_sVersion) ? 'v2.2' : p_sVersion;
 							
-							if (!angular.isDefined(p_sFBID) || '' == p_sFBID) { clDefer.reject('Missing p_sFBID.'); }
+							if (!angular.isDefined(p_sFBID) || '' === p_sFBID) { clDefer.reject('Missing p_sFBID.'); }
 							else if (b_FBScriptInitialized) { clDefer.resolve(FB); }
 							else
 							{
@@ -102,7 +102,7 @@
 				{
 					var clDefer = $q.defer();
 						
-						if (!angular.isDefined(p_sGAID) || '' == p_sGAID) { clDefer.reject('Missing p_sGAID.'); }
+						if (!angular.isDefined(p_sGAID) || '' === p_sGAID) { clDefer.reject('Missing p_sGAID.'); }
 						else
 						{
 							try

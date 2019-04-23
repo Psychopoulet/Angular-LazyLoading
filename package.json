@@ -1,9 +1,9 @@
 {
   "name": "angularjs-lazyloading",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A simple way to lazyload scripts & css with AngularJS",
   "scripts": {
-    "compress": "terser ./lib/angularjs-lazyloading.js --output ./dist/angularjs-lazyloading.min.js",
+    "compress": "terser ./lib/angularjs-lazyloading.js --output ./dist/angularjs-lazyloading.min.js --source-map \"url='angularjs-lazyloading.min.js.map'\"",
     "lint": "npx eslint ./lib/angularjs-lazyloading.js",
     "check-updates": "npx check-version-modules",
     "tests": "npm run-script lint && npm run-script check-updates"

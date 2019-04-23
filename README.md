@@ -14,7 +14,7 @@ const app = angular.module("MyApp", [ "ngLazyLoading" ]);
 ```javascript
 "use strict";
 
-app.directive("MyController", [ "$lazyLoading", "$q", ($lazyLoading, $q) => {
+app.directive("MyController", [ "$lazyLoading", ($lazyLoading) => {
 
 	// private
 
@@ -45,7 +45,7 @@ app.directive("MyController", [ "$lazyLoading", "$q", ($lazyLoading, $q) => {
 ```javascript
 "use strict";
 
-app.directive("MyController", [ "$lazyLoading", "$q", ($lazyLoading, $q) => {
+app.directive("MyController", [ "$lazyLoading", ($lazyLoading) => {
 
 	// private
 

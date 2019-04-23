@@ -1,5 +1,5 @@
-# Angular-LazyLoading
-A simple way to lazyload scripts with AngularJS
+# angularjs-lazyloading
+A simple way to lazyload scripts & css with AngularJS
 
 ## add to app
 

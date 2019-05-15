@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+	<head>
+		
+		<title>WyndPOSTools</title>
+
+		<meta charset="UTF-8" />
+		<link rel="shortcut icon" href="https://angularjs.org/favicon.ico" />
+
+	</head>
+
+	<body data-ng-app="AngularJSLazyLoading">
+
+		<div data-ng-controller="MainController">
+
+			<ul>
+				<li data-ng-repeat="event in events" style="color: {{ event.color }}">{{ event.message }}</li>
+			</ul>
+
+		</div>
+
+		<!-- scripts -->
+
+			<!-- Angular -->
+
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+			<script type="text/javascript" src="../lib/angularjs-lazyloading.js"></script>
+
+			<!-- Angular App -->
+
+			<script type="text/javascript">
+				window.app = angular.module("AngularJSLazyLoading", [ "ngLazyLoading" ]);
+			</script>
+
+			<script type="text/javascript" src="./controller.js"></script>
+
+	</body>
+
+</html>
